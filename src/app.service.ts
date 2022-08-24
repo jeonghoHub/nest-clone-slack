@@ -1,8 +1,14 @@
 import { Injectable } from '@nestjs/common';
+import { ConfigService } from '@nestjs/config';
 
 @Injectable()
 export class AppService {
-  getHello(): string {
-    return 'Hello World!';
+  constructor(private readonly configService: ConfigService) {}
+  async getHello() {
+    return this.configService.get('SECRET');
+  }
+
+  posthello(): string {
+    return 'Hello world!';
   }
 }
