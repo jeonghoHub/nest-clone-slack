@@ -9,6 +9,7 @@ import { UsersModule } from './users/users.module';
 import { WorkspacesModule } from './workspaces/workspaces.module';
 import { ChannelsModule } from './channels/channels.module';
 import { DmsModule } from './dms/dms.module';
+import { ChanelsController } from './chanels/chanels.controller';
 
 @Module({
   imports: [
@@ -18,7 +19,7 @@ import { DmsModule } from './dms/dms.module';
     ChannelsModule,
     DmsModule,
   ],
-  controllers: [AppController],
+  controllers: [AppController, ChanelsController],
   providers: [AppService],
 })
 export class AppModule implements NestModule {
