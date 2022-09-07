@@ -18,6 +18,7 @@ import { Mentions } from './entities/Mentions';
 import { Users } from './entities/Users';
 import { WorkspaceMembers } from './entities/WorkspaceMembers';
 import { Workspaces } from './entities/Workspaces';
+import { UsersService } from './users/users.service';
 
 @Module({
   imports: [
@@ -28,7 +29,7 @@ import { Workspaces } from './entities/Workspaces';
     ConfigModule.forRoot({ isGlobal: true }),
     TypeOrmModule.forRoot({
       type: 'mysql',
-      host: 'localhost',
+      host: '10.10.17.106',
       port: 3306,
       username: process.env.DB_USERNAME,
       password: process.env.DB_PASSWORD,
@@ -43,14 +44,16 @@ import { Workspaces } from './entities/Workspaces';
         WorkspaceMembers,
         Workspaces,
       ],
+      migrations: [__dirname + '/src/migrations/*.ts'],
+      // cli: { migrationsDir: 'src/migrations' },
+      charset: 'utf8mb4',
       synchronize: false,
       logging: true,
-      charset: 'utf8mb4',
-      keepConnectionAlive: true,
     }),
+    TypeOrmModule.forFeature([Users]),
   ],
   controllers: [AppController],
-  providers: [AppService],
+  providers: [AppService, UsersService],
 })
 export class AppModule implements NestModule {
   configure(consumer: MiddlewareConsumer): any {
