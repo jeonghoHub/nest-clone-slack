@@ -29,7 +29,7 @@ import { UsersService } from './users/users.service';
     ConfigModule.forRoot({ isGlobal: true }),
     TypeOrmModule.forRoot({
       type: 'mysql',
-      host: '10.10.17.106',
+      host: 'localhost',
       port: 3306,
       username: process.env.DB_USERNAME,
       password: process.env.DB_PASSWORD,
