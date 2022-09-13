@@ -1,8 +1,8 @@
-import { BadRequestException, HttpException, Injectable, UnauthorizedException } from '@nestjs/common';
+import { Injectable, UnauthorizedException } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Users } from '../entities/Users';
 import { Repository } from 'typeorm';
-import * as bcrypt from 'bcrypt'
+import * as bcrypt from 'bcrypt';
 
 @Injectable()
 export class UsersService {
@@ -11,6 +11,7 @@ export class UsersService {
     private usersRepository: Repository<Users>,
   ) {}
 
+  // eslint-disable-next-line @typescript-eslint/no-empty-function
   getUser() {}
 
   async join(email: string, nickname: string, password: string) {
